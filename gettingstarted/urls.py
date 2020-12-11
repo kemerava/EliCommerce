@@ -1,21 +1,16 @@
 from django.urls import path, include
 
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 
 admin.autodiscover()
 
 import hello.views
 
-# To add a new path, first import the app:
-# import blog
-#
-# Then add the new path:
-# path('blog/', blog.urls, name="blog")
-#
-# Learn more here: https://docs.djangoproject.com/en/2.1/topics/http/urls/
 
 urlpatterns = [
     path("", hello.views.index, name="index"),
     path("admin/", admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls'))
+    path('accounts/', include('django.contrib.auth.urls')),
+    path(r'accounts/signup/', hello.views.signup, name='signup')
 ]

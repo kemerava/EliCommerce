@@ -10,13 +10,15 @@
     <div class="col-md-8">
 
         <h1>LogIn</h1>
-        {% if form.errors %}
-            <p class="alert alert-danger">Your username and password aren't found. Please try again.</p>
-        {% endif %}
+
         <div class="col-md-6 col-sm-12">
-                {{ form|bootstrap }}
+            {{ form|bootstrap }}
             <form method="post" action="{% url 'login' %}">
-                <input type="submit" class="btn btn-primary mb-2" value="login"/>
+                {% if form.errors %}
+                    <p class="alert alert-danger">Your username and password aren't found. Please try again. <a
+                            href="{% url 'signup' %}">Sign Up here</a></p>
+                {% endif %}
+                <input type="submit" class="btn btn-primary mb-2" value="Log In"/>
 
                 {% csrf_token %}
             </form>
