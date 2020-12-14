@@ -12,5 +12,6 @@ urlpatterns = [
     path("", hello.views.index, name="index"),
     path("admin/", admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    path(r'accounts/signup/', hello.views.signup, name='signup')
+    path(r'accounts/signup/', hello.views.signup, name='signup'),
+    path(r'^items/(?P<item_id>\d+)/$', hello.views.item_view(), name='item')
 ]

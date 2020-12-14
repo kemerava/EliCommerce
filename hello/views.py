@@ -1,16 +1,13 @@
 from django.contrib.auth import login, authenticate
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+from hello.models import Item, ItemFeatures
 
 
 # Create your views here.
 def index(request):
     # return HttpResponse('Hello from Python!')
     return render(request, "index.html")
-
-
 
 
 def signup(request):
@@ -26,3 +23,10 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
+
+
+def item_view(request, item_id):
+    if request.method == 'GET':
+        item_info = Item.objects.get(pk=item_id)
+        item_list = ItemFeatures.objects.get(fk=item_id)
+        return render(request, 'item_pages/single_item.html', {'item': item_info, 'details': item_list})
