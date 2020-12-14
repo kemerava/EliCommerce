@@ -3,3 +3,4 @@ gunicorn
 django-heroku
 django-bootstrap-form
 django_extensions
+Pillow
