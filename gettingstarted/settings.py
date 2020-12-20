@@ -12,9 +12,10 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 
-import django_heroku
 import dj_database_url
+import django_heroku
 from dotenv import load_dotenv
+
 load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -94,8 +95,17 @@ DATABASES = {
     #     'HOST': 'localhost',
     #     'PORT': '5432'
 }
+# DATABASES = {
+#     'default': {
+#
+#         'ENGINE': 'ec2-34-237-236-32.compute-1.amazonaws.com',
+#         'NAME': 'dbrvpp9r06hnbf',
+#         'USER': 'cyuipvlomoophv',
+#         'PASSWORD': 'cf69d8f662ba1cdbf72c140e25f15e9d433aa77693c5b08d7a4279016e926c6c',
+#         'HOST': 'localhost',
+#         'PORT': '5432'
+# }
 DATABASES['default'] = dj_database_url.config(conn_max_age=600)
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -128,6 +138,10 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = "/static/"
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    'static/',
+]
 
 django_heroku.settings(locals())
 options = DATABASES['default'].get('OPTIONS', {})

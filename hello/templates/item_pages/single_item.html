@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} {{ item.title }} {% endblock %}
+
+{% block content %}
+    <div class="container-fluid " style="margin-top: 5px">
+        <div class="card d-flex align-items-center justify-content-center border border-dark">
+            <div class="wrapper row" style="margin-bottom: 10px">
+                <div class="preview col-md-4 col-lg-4 pull-left my-auto">
+                    <img src={% static item.picture %}  alt={{ item.title }} class="w-100"/>
+                </div>
+                <div class="details col-md-8 col-lg-8 pull-right">
+                    <div></div>
+                    <h3 class="product-title"
+                        style="color: #0693e3; font-family: 'Lobster', cursive; font-size: xx-large">{{ item.title }}</h3>
+                    <div>{{ item.description }}</div>
+                    <ul>
+                        {% for description in details %}
+                            <li>{{ description.feature }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% if user.username %}
+                        <a class="btn btn-primary waves-effect waves-light"
+                           href="cart.html"
+                           role="button" target="_blank"> <i class="shopping cart icon"></i>Add to cart</a>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+{% endblock %}

@@ -10,9 +10,9 @@
 
     <div class="col-md-8">
 
-        <h1>LogIn</h1>
+        <h1 style="color: #0693e3; font-family: 'Lobster', cursive; font-size: xx-large">LogIn</h1>
 
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-6 col-sm-12" style="color: white">
             {{ form|bootstrap }}
             <form method="post" action="{% url 'login' %}">
                 {% if form.errors %}
