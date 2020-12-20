@@ -6,8 +6,9 @@ from hello.models import Item, ItemFeatures
 
 # Create your views here.
 def index(request):
-    # return HttpResponse('Hello from Python!')
-    return render(request, "index.html")
+    if request.method == 'GET':
+        items = Item.objects.all()
+        return render(request, 'index.html', {'items': items})
 
 
 def signup(request):
@@ -29,6 +30,4 @@ def item_view(request, item_id):
     if request.method == 'GET':
         item_info = Item.objects.get(pk=item_id)
         item_list = ItemFeatures.objects.all().filter(item=item_id)
-        print(item_info)
-        print(item_list)
         return render(request, 'item_pages/single_item.html', {'item': item_info, 'details': item_list})
