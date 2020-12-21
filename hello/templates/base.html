@@ -7,19 +7,48 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
 </head>
 <body style="background-color: #474747">
 <div id="header">
     {% block header %}
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-expand-md">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href={% url 'index' %}>Home</a>
+            </li>
+        </ul>
+
         {% if user.username %}
-            <p>User: {{ user.username }} | <a href="{% url 'logout' %}?next={{ request.path }}">logout</a></p>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item">
+                    <a class="nav-link" href={% url 'details' %}><i class="user icon"></i>{{ user.username }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href={% url 'details' %}?next={{ request.path }}><i class="shopping cart icon"></i>Cart</a>
+                </li>
+                <li class="nav-item form-inline my-2 my-lg-0">
+                    <a class="nav-link" href="{% url 'logout' %}?next={{ request.path }}"><i class="share icon"></i>Logout</a>
+                </li>
+            </ul>
         {% else %}
-            {% if not 'login' %}  <p><a href="{% url 'login' %}?next={{ request.path }}">Login</a></p>
+            {% if not 'login' %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}?next={{ request.path }}"><i class="signup icon"></i>Login</a>
+                    </li>
+                </ul>
             {% endif %}{% endif %}
     {% endblock %}
+
+
+
+    </ul>
+    </nav>
+
 </div>
 
 {% block content %}{% endblock %}
