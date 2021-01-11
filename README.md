@@ -1,4 +1,4 @@
-# Python: Getting Started
+# EliCommerce: the website where you can buy or sell 
 
 A barebones Django app, which can easily be deployed to Heroku.
 
